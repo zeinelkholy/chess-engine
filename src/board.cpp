@@ -14,7 +14,7 @@ int Board::algebraToSquare(const std::string& str) {
 std::string Board::squareToAlgebra(int square) {
     std::string res = "";
     char file = (square % 8) + 'a';
-    char rank = (rank / 8) + '0';
+    char rank = (square / 8) + 1 + '0';
     res += file;
     res += rank;
     return res;
