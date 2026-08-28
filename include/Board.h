@@ -1,7 +1,9 @@
 #pragma once
 
 #include "Piece.h"
+#include "Move.h"
 #include <array>
+#include <string>
 
 class Board {
 private:
@@ -14,11 +16,18 @@ private:
     int enPassantTarget_ = -1;
 
 public:
+
+    static int algebraToSquare(const std::string& str);
+    static std::string squareToAlgebra(int square);
+
     void reset();
     void print() const;
 
     Piece getSquare(int square) const;
-    void setSquare(int square, Piece piece);
+    void setSquare(int square, const Piece& piece);
+
+    void makeMove(const Move& move);
+    void flipTurn();
 
     Color turn() const { return turn_; }
     bool canShortCastle(Color color) const;
