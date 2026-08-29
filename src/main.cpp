@@ -1,6 +1,10 @@
-#include <iostream>
 #include "Board.h"
 #include "Move.h"
+#include "MoveGenerator.h"
+#include "Notation.h"
+
+#include <iostream>
+#include <vector>
 
 int main() {
 
@@ -8,17 +12,17 @@ int main() {
     board.reset();
     board.print();
 
-    Move e2e4(12, 28);
+    Move e2e4("e2", "e4", PieceType::None, false, false, true);
+    Move d7d5("d7", "d5", PieceType::None, false, false, true);
+    Move nc3 = generateKnightMoves(board, 1).at(0);
 
     board.makeMove(e2e4);
     board.print();
 
-    Move d7d4(51, 27);
-    board.makeMove(d7d4);
+    board.makeMove(d7d5);
     board.print();
 
-    Move enPassant(27, 20, PieceType::None, false, true, false);
-    board.makeMove(enPassant);
+    board.makeMove(nc3);
     board.print();
 
     return 0;

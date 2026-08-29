@@ -17,9 +17,6 @@ private:
 
 public:
 
-    static int algebraToSquare(const std::string& str);
-    static std::string squareToAlgebra(int square);
-
     void reset();
     void print() const;
 

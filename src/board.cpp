@@ -1,24 +1,9 @@
-#include <iostream>
-#include <string>
-
 #include "Board.h"
 #include "Piece.h"
 #include "Move.h"
 
-int Board::algebraToSquare(const std::string& str) {
-    int file = str[0] - 'a';
-    int rank = str[1] - '0' - 1;
-    return rank * 8 + file; 
-}
-
-std::string Board::squareToAlgebra(int square) {
-    std::string res = "";
-    char file = (square % 8) + 'a';
-    char rank = (square / 8) + 1 + '0';
-    res += file;
-    res += rank;
-    return res;
-}
+#include <iostream>
+#include <string>
 
 void Board::setSquare(int square, const Piece& piece) {
     squares_[square] = piece;
@@ -117,6 +102,7 @@ void Board::makeMove(const Move& move) {
     else
         enPassantTarget_ = -1;
 
+    // King move, revoke castling rights
     if (piece.type == PieceType::King) {
         if (piece.color == Color::White) {
             whiteCanLongCastle_ = false;
@@ -127,6 +113,7 @@ void Board::makeMove(const Move& move) {
         }
     }
 
+    // Rook moved or captured, revoke castling rights
     if (move.to == 0 || move.from == 0)
         whiteCanLongCastle_ = false;
     if (move.to == 7 || move.from == 7)
