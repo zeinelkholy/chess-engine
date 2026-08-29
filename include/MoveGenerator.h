@@ -11,3 +11,4 @@ std::vector<Move> generateBishopMoves(const Board& board, int square);
 std::vector<Move> generateRookMoves(const Board& board, int square);
 std::vector<Move> generateQueenMoves(const Board& board, int square);
 std::vector<Move> generateKingMoves(const Board& board, int square);
+std::vector<Move> generateSlidingMoves(const Board& board, int square, const std::vector<std::pair<int, int>>& directions);

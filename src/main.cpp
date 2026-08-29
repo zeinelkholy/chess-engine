@@ -25,5 +25,9 @@ int main() {
     board.makeMove(nc3);
     board.print();
 
+    for (Move move : generatePawnMoves(board, algebraToSquare("d5"))) {
+        std::cout << squareToAlgebra(move.to) << std::endl;
+    }
+
     return 0;
 }
