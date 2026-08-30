@@ -10,3 +10,9 @@ add_executable(chess-engine src/main.cpp
 src/Board.cpp 
 src/Notation.cpp
 src/MoveGenerator.cpp)
+
+add_executable(chess-tests test/main.cpp 
+test/Perft.cpp 
+src/Board.cpp 
+src/Notation.cpp 
+src/MoveGenerator.cpp)

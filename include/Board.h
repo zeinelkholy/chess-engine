@@ -15,6 +15,9 @@ private:
     bool blackCanLongCastle_ = true;
     int enPassantTarget_ = -1;
 
+    int whiteKingSquare_ = 4;
+    int blackKingSquare_ = 60;
+
 public:
 
     void reset();
@@ -30,4 +33,9 @@ public:
     bool canShortCastle(Color color) const;
     bool canLongCastle(Color color) const;
     int enPassantTarget() const { return enPassantTarget_; }
+
+    int whiteKingSquare() const { return whiteKingSquare_; };
+    int blackKingSquare() const { return blackKingSquare_; };
+
+    int kingSquare(Color color) const;
 };

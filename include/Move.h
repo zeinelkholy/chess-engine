@@ -19,5 +19,12 @@ struct Move {
     Move(std::string f, std::string t, PieceType prom = PieceType::None,
      bool cas = false, bool en = false, bool dpp = false)
     : from(algebraToSquare(f)), to(algebraToSquare(t)), promotion(prom), isCastling(cas), isEnPassant(en), isDoublePawnPush(dpp) {}
+
+    std::string algebraicNotation() const {
+        std::string alg;
+        alg += squareToAlgebra(from);
+        alg += squareToAlgebra(to);
+        return alg;
+    }
     
 };

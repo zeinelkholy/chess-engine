@@ -32,6 +32,10 @@ void Board::reset() {
     blackCanLongCastle_ = true;
     enPassantTarget_ = -1;
 
+    int whiteKingSquare_ = 4;
+    int blackKingSquare_ = 60;
+    
+
     for (int square = 0; square < 64; ++square) {
         setSquare(square, Piece());
     }
@@ -60,6 +64,13 @@ void Board::print() const {
 
 void Board::flipTurn() {
     turn_ = (turn() == Color::White) ? Color::Black : Color::White;
+}
+
+
+int Board::kingSquare(Color color) const {
+    if (color == Color::White)
+        return whiteKingSquare();
+    return blackKingSquare();
 }
 
 void Board::makeMove(const Move& move) {
@@ -102,14 +113,18 @@ void Board::makeMove(const Move& move) {
     else
         enPassantTarget_ = -1;
 
-    // King move, revoke castling rights
+    // King move, revoke castling rights & update location
     if (piece.type == PieceType::King) {
         if (piece.color == Color::White) {
             whiteCanLongCastle_ = false;
             whiteCanShortCastle_ = false;
+
+            whiteKingSquare_ = move.to; 
         } else {
             blackCanLongCastle_ = false;
             blackCanShortCastle_ = false;
+
+            blackKingSquare_ = move.to;
         }
     }
 
