@@ -62,6 +62,15 @@ void Board::print() const {
     std::cout << "   a b c d e f g h\n";
 }
 
+bool Board::canShortCastle(Color color) const {
+    return (color == Color::White) ? whiteCanShortCastle_ : blackCanShortCastle_;
+}
+
+bool Board::canLongCastle(Color color) const {
+    return (color == Color::White) ? whiteCanLongCastle_ : blackCanLongCastle_;
+}
+
+
 void Board::flipTurn() {
     turn_ = (turn() == Color::White) ? Color::Black : Color::White;
 }
