@@ -24,7 +24,9 @@ public:
     void print() const;
 
     Piece getSquare(int square) const;
+    Piece getSquare(const std::string& square) const;
     void setSquare(int square, const Piece& piece);
+    void setSquare(const std::string& square, const Piece& piece);
 
     void makeMove(const Move& move);
     void flipTurn();

@@ -1,26 +1,31 @@
 #include "Board.h"
 #include "Perft.h"
+#include "MoveGenerator.h"
+#include "Move.h"
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 int main() {
     Board board;
     board.reset();
 
-    std::string move;
-    while (true) {
-        board.print();
-        std::cout << "\nEnter move: ";
-        std::cin >> move;
+    board.setSquare("c1", Piece());
+    board.setSquare("b1", Piece());
+    board.setSquare("d1", Piece());
+    board.setSquare("g1", Piece());
+    board.setSquare("f1", Piece());
 
-        if (move == "x")
-            break;
+    board.makeMove(Move("d2", "d4"));
+    board.makeMove(Move("d8", "b4"));
 
-        std::string from = move.substr(0, 2);
-        std::string to = move.substr(2, 2);
-        board.makeMove(Move(algebraToSquare(from), algebraToSquare(to)));
+    board.print();
+
+    for (Move move : generateAllLegalMoves(board)) {
+        std::cout << move.algebraicNotation() << '\n';
     }
+    
 
     return 0;
 }

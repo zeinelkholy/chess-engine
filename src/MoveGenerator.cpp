@@ -46,6 +46,60 @@ std::vector<Move> generateKingMoves(const Board& board, int square) {
             moves.push_back(Move(square, target));
     }
 
+    // Kingside castling
+    {
+        Color kingColor = board.getSquare(square).color;
+        int homeRank = (kingColor == Color::White) ? 0 : 7;
+        int kingHome = fileRankToSquare(4, homeRank);
+
+        bool hasRight = (kingColor == Color::White) ? board.canShortCastle(Color::White) : board.canShortCastle(Color::Black);
+
+        if (square == kingHome && hasRight) {
+            int fSquare = fileRankToSquare(5, homeRank);
+            int gSquare = fileRankToSquare(6, homeRank);
+            Color opponent = (kingColor == Color::White) ? Color::Black 
+                : Color::White;
+
+            bool squaresEmpty = board.getSquare(fSquare).type == PieceType::None 
+                && board.getSquare(gSquare).type == PieceType::None;
+
+            bool notAttacked = !isSquareAttacked(board, kingHome, opponent)
+                && !isSquareAttacked(board, fSquare, opponent)
+                && !isSquareAttacked(board, gSquare, opponent);
+
+            if (squaresEmpty && notAttacked)
+                moves.push_back(Move(kingHome, gSquare, PieceType::None, true));
+        }
+    }
+
+    // Queenside castling (both colors)
+    {
+        Color kingColor = board.getSquare(square).color;
+        int homeRank = (kingColor == Color::White) ? 0 : 7;
+        int kingHome = fileRankToSquare(4, homeRank);
+
+        bool hasRight = (kingColor == Color::White) ? board.canLongCastle(Color::White) 
+            : board.canLongCastle(Color::Black);
+
+        if (square == kingHome && hasRight) {
+            int bSquare = fileRankToSquare(1, homeRank);
+            int cSquare = fileRankToSquare(2, homeRank);
+            int dSquare = fileRankToSquare(3, homeRank);
+            Color opponent = (kingColor == Color::White) ? Color::Black : Color::White;
+
+            bool squaresEmpty = board.getSquare(bSquare).type == PieceType::None
+                            && board.getSquare(cSquare).type == PieceType::None
+                            && board.getSquare(dSquare).type == PieceType::None;
+
+            bool notAttacked = !isSquareAttacked(board, kingHome, opponent)
+                            && !isSquareAttacked(board, dSquare, opponent)
+                            && !isSquareAttacked(board, cSquare, opponent);
+
+            if (squaresEmpty && notAttacked) {
+                moves.push_back(Move(kingHome, cSquare, PieceType::None, true));
+            }
+        }
+    }
     return moves;
 }
 

@@ -13,6 +13,14 @@ Piece Board::getSquare(int square) const {
     return squares_[square];
 }
 
+void Board::setSquare(const std::string& square, const Piece& piece) {
+    squares_[algebraToSquare(square)] = piece;
+}
+
+Piece Board::getSquare(const std::string& square) const {
+    return squares_[algebraToSquare(square)];
+}
+
 void Board::reset() {
     std::array<PieceType, 8> types = {
         PieceType::Rook, 
