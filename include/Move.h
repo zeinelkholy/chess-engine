@@ -11,6 +11,8 @@ struct Move {
     bool isCastling = false;
     bool isEnPassant = false;
     bool isDoublePawnPush = false;
+
+    bool isNull() const { return from == -1; }
     
     Move(int f, int t, PieceType prom = PieceType::None,
      bool cas = false, bool en = false, bool dpp = false)

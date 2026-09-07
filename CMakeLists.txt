@@ -9,10 +9,13 @@ include_directories(include)
 add_executable(chess-engine src/main.cpp 
 src/Board.cpp 
 src/Notation.cpp
-src/MoveGenerator.cpp)
+src/MoveGenerator.cpp
+src/Evaluation.cpp)
 
 add_executable(chess-tests test/main.cpp 
 test/Perft.cpp 
 src/Board.cpp 
 src/Notation.cpp 
-src/MoveGenerator.cpp)
+src/MoveGenerator.cpp
+src/Evaluation.cpp
+src/Search.cpp)
