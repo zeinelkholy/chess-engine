@@ -62,11 +62,10 @@ void Board::print() const {
     for (int rank = 7; rank >= 0; --rank) {
         std::cout << (rank + 1) << "  ";
         for (int file = 0; file < 8; ++file) {
-            std::cout << getSquare(rank * 8 + file).toChar() << ' ';
+            std::cout << getSquare(rank * 8 + file).toSymbol() << ' ';
         }
         std::cout << '\n';
     }
-    std::cout << "---------------------\n";
     std::cout << "   a b c d e f g h\n";
 }
 
