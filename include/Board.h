@@ -2,6 +2,8 @@
 
 #include "Piece.h"
 #include "Move.h"
+#include "Zobrist.h"
+
 #include <array>
 #include <string>
 
@@ -18,6 +20,8 @@ private:
     int whiteKingSquare_ = 4;
     int blackKingSquare_ = 60;
 
+    uint64_t hash_;
+
 public:
 
     void reset();
@@ -27,6 +31,8 @@ public:
     Piece getSquare(const std::string& square) const;
     void setSquare(int square, const Piece& piece);
     void setSquare(const std::string& square, const Piece& piece);
+
+    uint64_t computeHash() const;
 
     void makeMove(const Move& move);
     void flipTurn();

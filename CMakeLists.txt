@@ -12,5 +12,6 @@ src/Board.cpp
 src/Notation.cpp 
 src/MoveGenerator.cpp
 src/Evaluation.cpp
-src/Search.cpp)
+src/Search.cpp
+src/Zobrist.cpp)
 
